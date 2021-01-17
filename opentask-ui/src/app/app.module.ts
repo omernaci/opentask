@@ -8,6 +8,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LoginComponent } from './login/login.component';
     CreateTaskComponent,
     TaskListComponent,
     TaskDetailComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
