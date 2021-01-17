@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +8,16 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  username = ''
-  password = ''
-  errorMessage = 'Invalid Credentials'
-  invalidLogin = false
+  username = '';
+  password = '';
+  errorMessage = 'Invalid Credentials';
+  invalidLogin = false;
   returnUrl: string;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -24,8 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   handleJWTAuthLogin() {
-    console.log("username:"+ this.username + ", password:"+ this.password);
-    this.router.navigate(['tasks']);
+    console.log('username:' + this.username + ', password:' + this.password);
+    if (this.authenticationService.authenticate(this.username,this.password))
+      this.router.navigate(['tasks']);
+    else this.invalidLogin = true;
     // this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
     //     .subscribe(
     //       data => {
