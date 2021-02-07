@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 interface Country {
   name: string;
   flag: string;
@@ -39,9 +40,28 @@ const COUNTRIES: Country[] = [
 })
 export class TaskListComponent implements OnInit {
   countries = COUNTRIES;
-  constructor() { }
+  tasks;
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+    this.getTaskList();
+  }
+
+  private getTaskList() {
+    this.taskService.getTaskList().subscribe(data => {
+      this.tasks = data.tasks;
+    });
+  }
+
+  updateTask(){
+
+  }
+
+  deleteTask(id){
+    console.log(id);
+    this.taskService.deleteTask(id).subscribe(res => {
+      this.getTaskList();
+    });
   }
 
 }
