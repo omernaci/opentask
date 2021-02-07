@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpinterceptorService } from './services/httpinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,13 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule
   ],
   providers: [
-    // {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true }
  ],
   bootstrap: [AppComponent]
 })

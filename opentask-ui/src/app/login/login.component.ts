@@ -26,21 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   handleJWTAuthLogin() {
-    console.log('username:' + this.username + ', password:' + this.password);
-    if (this.authenticationService.authenticate(this.username,this.password))
-      this.router.navigate(['tasks']);
-    else this.invalidLogin = true;
-    // this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
-    //     .subscribe(
-    //       data => {
-    //         console.log(data)
-    //         this.router.navigate(['welcome', this.username])
-    //         this.invalidLogin = false
-    //       },
-    //       error => {
-    //         console.log(error)
-    //         this.invalidLogin = true
-    //       }
-    //     )
+    this.authenticationService.jwtAuthentication(this.username, this.password)
+        .subscribe(
+          data => {
+            console.log(data)
+            this.router.navigate(['tasks', this.username])
+            this.invalidLogin = false
+          },
+          error => {
+            console.log(error)
+            this.invalidLogin = true
+          }
+        )
   }
 }
