@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = {"/api/v1/tasks"}, produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins="http://localhost:4200")
 public class TaskController {
 
     private final TaskService taskService;

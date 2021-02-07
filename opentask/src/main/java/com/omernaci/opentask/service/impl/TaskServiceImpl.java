@@ -67,7 +67,7 @@ public class TaskServiceImpl implements TaskService {
 
         Optional<Task> taskOptional = taskRepository.findById(id);
         if (taskOptional.isPresent()) {
-            response.setTaskDto(mapper.map(taskOptional.get(), TaskDto.class));
+            response.setTask(mapper.map(taskOptional.get(), TaskDto.class));
             response.setSuccess(true);
         } else {
             handleApiException(response);
@@ -83,7 +83,7 @@ public class TaskServiceImpl implements TaskService {
 
         if (CollectionUtils.isNotEmpty(tasks)) {
             Type listType = new TypeToken<List<TaskDto>>() {}.getType();
-            response.setTaskDtos(new ModelMapper().map(tasks, listType));
+            response.setTasks(new ModelMapper().map(tasks, listType));
             response.setSuccess(true);
         } else {
             response.setSuccess(false);
@@ -108,7 +108,7 @@ public class TaskServiceImpl implements TaskService {
 
             Task updatedTask = taskRepository.save(task);
 
-            response.setTaskDto(new ModelMapper().map(updatedTask, TaskDto.class));
+            response.setTask(new ModelMapper().map(updatedTask, TaskDto.class));
             response.setSuccess(true);
         } else {
             response.setSuccess(false);

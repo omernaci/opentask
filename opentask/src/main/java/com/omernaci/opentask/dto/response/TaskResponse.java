@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TaskResponse extends BaseApiResponse {
 
-    private TaskDto taskDto;
+    private TaskDto task;
 
 }

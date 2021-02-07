@@ -15,10 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskListResponse extends BaseApiResponse {
 
-    private List<TaskDto> taskDtos;
+    private List<TaskDto> tasks;
 
     {
-        taskDtos = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
 }
